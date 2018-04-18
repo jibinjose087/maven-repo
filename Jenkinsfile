@@ -17,7 +17,9 @@ pipeline {
             stage ('package stage') {
                 steps {
                   sh  '''
-                        mkdir -p output                 
+                        mkdir -p output
+                        pwd
+                        ls -l
                         sh mvn clean compile
                     '''
                   writeFile file: "output/usefulfile.txt", text: "This file is useful, need to archive it."
@@ -31,6 +33,9 @@ pipeline {
             post {
                 success {
                     archiveArtifacts artifacts: 'output/*.txt', excludes: 'output/*.md'
+                always { 
+                    cleanWs()
+                }
             }
           }
         }
