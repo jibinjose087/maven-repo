@@ -16,13 +16,6 @@ pipeline {
   stages {
     stage("first stage") {
       steps {
-        timeout(time: true, uint: 'MINUTES') {
-          echo "We're not doing anything particularly special here."
-          echo "Just making sure that we don't take longer than five minutes"
-          echo "Which, I guess, is kind of silly."
-          
-          // This'll output 3.3.3, since that's the Maven version we
-          // configured above. Well, once we fix the validation error!
           sh "mvn -version" 
         }
       }
@@ -89,7 +82,7 @@ pipeline {
     
     // And we'd really like to be sure that this build doesn't hang forever, so
     // let's time it out after an hour.
-    timeout(time: 60, unit: 'MINUTES')
+
   }
 
 }
