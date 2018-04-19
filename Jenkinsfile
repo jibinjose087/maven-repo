@@ -30,7 +30,7 @@ pipeline {
                 }
             stage ('archive stage') {
                 steps {
-                deleteDir()
+                sh echo "Arvieddddd"
             }
           }
           
