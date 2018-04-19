@@ -38,11 +38,12 @@ pipeline {
             post {
             
                 always {
-                    deleteDir()
                     echo 'I will always say Hello again!'
                     }
+                    
                 success {
                     archiveArtifacts artifacts: 'output/*.txt', excludes: 'output/*.md'
+                    deleteDir()
             }
           }
     
