@@ -2,14 +2,12 @@
 pipeline {
 
   // agent defines where the pipeline will run.
-  agent {
-    // This also could have been 'agent any' - that has the same meaning.
-    label ""
-    // Other possible built-in agent types are 'agent none', for not running the
-    // top-level on any agent (which results in you needing to specify agents on
-    // each stage and do explicit checkouts of scm in those stages), 'docker',
-    // and 'dockerfile'.
-  }
+  agent any
+        options {
+        cleanWs()
+        // Only keep the 10 most recent builds
+        buildDiscarder(logRotator(numToKeepStr:'2'))
+          }
   
   // The tools directive allows you to automatically install tools configured in
   // Jenkins - note that it doesn't work inside Docker containers currently.
