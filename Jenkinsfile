@@ -1,43 +1,25 @@
 #!groovy​
 pipeline {
     agent any
-        tools { 
-        maven 'Maven 3.5.3' 
-            }
-        stages {
-            stage ('Compile stage') {
+        options {
+        cleanWs()
+        // Only keep the 10 most recent builds
+        buildDiscarder(logRotator(numToKeepStr:'2'))
+          }
+
+            stage ('test stage') {
                 steps {
-                sh  '''
-                    echo "PATH = ${PATH}"
-                    echo "M2_HOME = ${M2_HOME}"
-                    echo "compiled"                  
-                    '''
-                      }
-                }
-            stage ('package stage') {
-                steps {
-                  sh  '''
-                        mkdir -p output
-                        pwd
-                        ls -l
-                        sh mvn clean compile
-                    '''
-                  writeFile file: "output/usefulfile.txt", text: "This file is useful, need to archive it."
-                  writeFile file: "output/uselessfile.md", text: "This file is useless, no need to archive it."
-                  }
-                }
-            stage ('archive stage') {
-                steps {
-                echo "deployed"                  
-            }
-            post {
-                success {
-                    archiveArtifacts artifacts: 'output/*.txt', excludes: 'output/*.md'
-                always { 
-                    cleanWs()
-                }
+                echo "success"
             }
           }
-        }
+            post {
+            
+                always {
+                    deleteDir()
+                    echo 'I will always say Hello again!'
+                    }
+                success {
+                   echo 'I will always say success!' 
+            }
+          }
     }
-  }
