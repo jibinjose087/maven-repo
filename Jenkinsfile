@@ -6,7 +6,7 @@ pipeline {
             }
         options {
         // Only keep the 10 most recent builds
-        buildDiscarder(logRotator(numToKeepStr:'2'))
+        buildDiscarder(logRotator(numToKeepStr:'7'))
           }
         stages {
             stage ('Compile stage') {
@@ -30,7 +30,7 @@ pipeline {
                 }
             stage ('archive stage') {
                 steps {
-                    echo "archiving is in next stage"
+                deleteDir()
             }
           }
           
@@ -48,6 +48,3 @@ pipeline {
           }
     
   }
-
-  
-  
