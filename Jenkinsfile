@@ -1,6 +1,7 @@
 #!groovy​
 pipeline {
-    agent any
+#    agent any
+    agent { node { label 'ec2-slave' } }
         tools { 
         maven 'Maven 3.5.3' 
             }
