@@ -33,6 +33,8 @@ pipeline {
                 deleteDir()
             }
           }
+          
+          }
             post {
             
                 always {
@@ -43,5 +45,8 @@ pipeline {
                     archiveArtifacts artifacts: 'output/*.txt', excludes: 'output/*.md'
             }
           }
-    }
+    
   }
+
+  
+  
