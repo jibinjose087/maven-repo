@@ -82,7 +82,6 @@ pipeline {
     
     // And we'd really like to be sure that this build doesn't hang forever, so
     // let's time it out after an hour.
-
+    timeout(time: 60, unit: 'MINUTES')
   }
 
-}
