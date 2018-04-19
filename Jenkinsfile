@@ -10,7 +10,8 @@ pipeline {
                 sh  '''
                     echo "PATH = ${PATH}"
                     echo "M2_HOME = ${M2_HOME}"
-                    echo "compiled"                  
+                    echo "compiled"
+                    echo "JAVA_HOME = $JAVA_HOME"
                     '''
                       }
                 }
