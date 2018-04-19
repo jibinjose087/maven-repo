@@ -1,17 +1,20 @@
 #!groovy​
 pipeline {
-    agent { node { label 'ec2-slave' } }
+    agent any
         tools { 
-        maven 'Maven 3.5.3' 
+            maven 'Maven 3.5.3' 
             }
+    options {
+    // Only keep the 10 most recent builds
+    buildDiscarder(logRotator(numToKeepStr:'2'))
+          }
         stages {
             stage ('Compile stage') {
                 steps {
                 sh  '''
                     echo "PATH = ${PATH}"
                     echo "M2_HOME = ${M2_HOME}"
-                    echo "compiled"
-                    echo "JAVA_HOME = $JAVA_HOME"
+                    echo "compiled"                  
                     '''
                       }
                 }
