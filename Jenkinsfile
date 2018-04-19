@@ -29,8 +29,10 @@ pipeline {
                   }
                 }
             stage ('archive stage') {
-                steps {
-                sh echo "Arvieddddd"
+                steps {                  
+                     sh  '''
+                        echo "Arvieddddd"             
+                    '''
             }
           }
           
