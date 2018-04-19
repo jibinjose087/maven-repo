@@ -27,7 +27,10 @@ pipeline {
                 }
             stage ('archive stage') {
                 steps {
-                echo "deployed"                  
+                echo "deployed"
+                     sh  '''
+                        deleteDir()
+                       '''
             }
             post {
                 success {
